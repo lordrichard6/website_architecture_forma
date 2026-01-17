@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import styles from './Testimonials.module.css';
 
 const testimonials = [
@@ -26,6 +27,9 @@ const testimonials = [
 export default function Testimonials() {
     const [active, setActive] = useState(0);
 
+    const next = () => setActive((prev) => (prev + 1) % testimonials.length);
+    const prev = () => setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+
     return (
         <section className={`section-padding ${styles.testimonials}`}>
             <div className="container">
@@ -35,9 +39,13 @@ export default function Testimonials() {
                 </div>
 
                 <div className={styles.content}>
+                    <div className={styles.quoteIcon}>
+                        <Quote size={48} strokeWidth={1} />
+                    </div>
+
                     <div className={styles.quoteWrapper}>
                         <blockquote className={styles.quote}>
-                            &ldquo;{testimonials[active].quote}&rdquo;
+                            {testimonials[active].quote}
                         </blockquote>
                         <div className={styles.author}>
                             <strong>{testimonials[active].author}</strong>
@@ -46,15 +54,23 @@ export default function Testimonials() {
                         </div>
                     </div>
 
-                    <div className={styles.dots}>
-                        {testimonials.map((_, index) => (
-                            <button
-                                key={index}
-                                className={`${styles.dot} ${index === active ? styles.active : ''}`}
-                                onClick={() => setActive(index)}
-                                aria-label={`Go to testimonial ${index + 1}`}
-                            />
-                        ))}
+                    <div className={styles.controls}>
+                        <button className={styles.arrow} onClick={prev} aria-label="Previous testimonial">
+                            <ChevronLeft size={24} />
+                        </button>
+                        <div className={styles.dots}>
+                            {testimonials.map((_, index) => (
+                                <button
+                                    key={index}
+                                    className={`${styles.dot} ${index === active ? styles.active : ''}`}
+                                    onClick={() => setActive(index)}
+                                    aria-label={`Go to testimonial ${index + 1}`}
+                                />
+                            ))}
+                        </div>
+                        <button className={styles.arrow} onClick={next} aria-label="Next testimonial">
+                            <ChevronRight size={24} />
+                        </button>
                     </div>
                 </div>
             </div>

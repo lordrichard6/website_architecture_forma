@@ -1,23 +1,25 @@
+'use client';
+import { Building2, Home, Building, Sparkles } from 'lucide-react';
 import styles from './Services.module.css';
 
 const services = [
     {
-        icon: '🏛️',
+        icon: Building2,
         title: 'Master Planning',
         desc: 'Comprehensive urban design and master planning for sustainable communities.',
     },
     {
-        icon: '🏠',
+        icon: Home,
         title: 'Residential',
         desc: 'Bespoke homes and luxury residences crafted with precision.',
     },
     {
-        icon: '🏢',
+        icon: Building,
         title: 'Commercial',
         desc: 'Dynamic office spaces and commercial developments that inspire.',
     },
     {
-        icon: '✨',
+        icon: Sparkles,
         title: 'Interior Design',
         desc: 'Transformative interiors that blend form and function seamlessly.',
     },
@@ -37,10 +39,13 @@ export default function Services() {
 
                 <div className={styles.grid}>
                     {services.map((service, index) => (
-                        <div key={index} className={styles.card}>
-                            <span className={styles.icon}>{service.icon}</span>
+                        <div key={index} className={styles.card} style={{ animationDelay: `${index * 0.1}s` }}>
+                            <div className={styles.iconWrapper}>
+                                <service.icon className={styles.icon} size={32} strokeWidth={1.5} />
+                            </div>
                             <h3>{service.title}</h3>
                             <p>{service.desc}</p>
+                            <div className={styles.hoverLine} />
                         </div>
                     ))}
                 </div>
