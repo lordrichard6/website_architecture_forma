@@ -5,7 +5,7 @@ export default function Hero() {
     return (
         <section className={styles.hero}>
             <Image
-                src="/hero.png"
+                src="/hero.webp"
                 alt="FORMA Architecture"
                 fill
                 className={styles.bgImage}

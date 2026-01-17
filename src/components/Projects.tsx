@@ -3,12 +3,12 @@ import Link from 'next/link';
 import styles from './Projects.module.css';
 
 const projects = [
-    { slug: 'alpine-residence', title: "Alpine Residence", category: "Residential", year: "2024", image: "/project1.png" },
-    { slug: 'cultural-center', title: "Cultural Center", category: "Public", year: "2023", image: "/project2.png" },
-    { slug: 'urban-office-tower', title: "Urban Office Tower", category: "Commercial", year: "2023", image: "/hero.png" },
-    { slug: 'lakeside-villa', title: "Lakeside Villa", category: "Residential", year: "2024", image: "/project1.png" },
-    { slug: 'tech-campus', title: "Innovation Campus", category: "Commercial", year: "2023", image: "/project2.png" },
-    { slug: 'museum-of-art', title: "Museum of Modern Art", category: "Public", year: "2022", image: "/hero.png" },
+    { slug: 'alpine-residence', title: "Alpine Residence", category: "Residential", year: "2024", image: "/project1.webp" },
+    { slug: 'cultural-center', title: "Cultural Center", category: "Public", year: "2023", image: "/project2.webp" },
+    { slug: 'urban-office-tower', title: "Urban Office Tower", category: "Commercial", year: "2023", image: "/hero.webp" },
+    { slug: 'lakeside-villa', title: "Lakeside Villa", category: "Residential", year: "2024", image: "/project1.webp" },
+    { slug: 'tech-campus', title: "Innovation Campus", category: "Commercial", year: "2023", image: "/project2.webp" },
+    { slug: 'museum-of-art', title: "Museum of Modern Art", category: "Public", year: "2022", image: "/hero.webp" },
 ];
 
 export default function Projects() {

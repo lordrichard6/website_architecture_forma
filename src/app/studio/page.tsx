@@ -4,12 +4,12 @@ import Footer from "@/components/Footer";
 import styles from './studio.module.css';
 
 const team = [
-    { name: 'Marcus Weber', role: 'Founding Partner', image: '/project1.png' },
-    { name: 'Elena Fischer', role: 'Design Director', image: '/project2.png' },
-    { name: 'Thomas Brunner', role: 'Technical Director', image: '/hero.png' },
-    { name: 'Sophie Meier', role: 'Senior Architect', image: '/project1.png' },
-    { name: 'Lukas Hoffmann', role: 'Project Architect', image: '/project2.png' },
-    { name: 'Anna Keller', role: 'Interior Designer', image: '/hero.png' },
+    { name: 'Marcus Weber', role: 'Founding Partner', image: '/project1.webp' },
+    { name: 'Elena Fischer', role: 'Design Director', image: '/project2.webp' },
+    { name: 'Thomas Brunner', role: 'Technical Director', image: '/hero.webp' },
+    { name: 'Sophie Meier', role: 'Senior Architect', image: '/project1.webp' },
+    { name: 'Lukas Hoffmann', role: 'Project Architect', image: '/project2.webp' },
+    { name: 'Anna Keller', role: 'Interior Designer', image: '/hero.webp' },
 ];
 
 const awards = [

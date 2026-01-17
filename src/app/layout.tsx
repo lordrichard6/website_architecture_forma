@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/hero.png',
+        url: '/hero.webp',
         width: 1200,
         height: 630,
         alt: 'FORMA Architecture Studio',
@@ -42,7 +42,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'FORMA | Architecture Studio Zurich',
     description: 'Award-winning architecture studio designing bold, timeless spaces.',
-    images: ['/hero.png'],
+    images: ['/hero.webp'],
+  },
+  icons: {
+    icon: '/icon.png',
+    apple: '/apple-icon.png',
   },
   robots: {
     index: true,
