@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -7,7 +8,12 @@ export default function Footer() {
             <div className="container">
                 <div className={styles.grid}>
                     <div className={styles.brand}>
-                        <span className={styles.logo}>FORMA</span>
+                        <Link href="/" className={styles.logoLink}>
+                            <div className={styles.logoIcon}>
+                                <Image src="/icon.png" alt="FORMA Logo" width={32} height={32} />
+                            </div>
+                            <span className={styles.logo}>FORMA</span>
+                        </Link>
                         <p className={styles.tagline}>Bold ideas. Timeless spaces.</p>
                     </div>
 

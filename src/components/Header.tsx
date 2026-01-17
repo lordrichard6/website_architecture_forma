@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
@@ -37,7 +38,10 @@ export default function Header() {
         <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
             <div className={`container ${styles.container}`}>
                 <Link href="/" className={styles.logo}>
-                    FORMA
+                    <div className={styles.logoIcon}>
+                        <Image src="/icon.png" alt="FORMA Logo" width={32} height={32} />
+                    </div>
+                    <span>FORMA</span>
                 </Link>
 
                 <nav className={styles.nav}>
