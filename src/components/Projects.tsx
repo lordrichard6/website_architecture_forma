@@ -1,10 +1,14 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from './Projects.module.css';
 
 const projects = [
-    { id: 1, title: "Alpine Residence", category: "Residential", year: "2024", image: "/project1.png" },
-    { id: 2, title: "Cultural Center", category: "Public", year: "2023", image: "/project2.png" },
-    { id: 3, title: "Urban Office Tower", category: "Commercial", year: "2023", image: "/hero.png" },
+    { slug: 'alpine-residence', title: "Alpine Residence", category: "Residential", year: "2024", image: "/project1.png" },
+    { slug: 'cultural-center', title: "Cultural Center", category: "Public", year: "2023", image: "/project2.png" },
+    { slug: 'urban-office-tower', title: "Urban Office Tower", category: "Commercial", year: "2023", image: "/hero.png" },
+    { slug: 'lakeside-villa', title: "Lakeside Villa", category: "Residential", year: "2024", image: "/project1.png" },
+    { slug: 'tech-campus', title: "Innovation Campus", category: "Commercial", year: "2023", image: "/project2.png" },
+    { slug: 'museum-of-art', title: "Museum of Modern Art", category: "Public", year: "2022", image: "/hero.png" },
 ];
 
 export default function Projects() {
@@ -12,13 +16,14 @@ export default function Projects() {
         <section id="projects" className={`section-padding ${styles.projects}`}>
             <div className="container">
                 <div className={styles.header}>
+                    <span className={styles.label}>Portfolio</span>
                     <h2>Selected Works</h2>
                     <p>A curated collection of our most impactful projects.</p>
                 </div>
 
                 <div className={styles.grid}>
                     {projects.map((project) => (
-                        <div key={project.id} className={styles.card}>
+                        <Link href={`/projects/${project.slug}`} key={project.slug} className={styles.card}>
                             <div className={styles.imageWrapper}>
                                 <Image
                                     src={project.image}
@@ -34,12 +39,12 @@ export default function Projects() {
                                 <h3>{project.title}</h3>
                                 <span className={styles.year}>{project.year}</span>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
 
                 <div className={styles.cta}>
-                    <a href="#" className="btn btn-outline">View All Projects</a>
+                    <Link href="/projects" className="btn btn-outline">View All Projects</Link>
                 </div>
             </div>
         </section>

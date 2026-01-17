@@ -1,0 +1,103 @@
+.main {
+    padding-top: 80px;
+}
+
+.hero {
+    background: var(--black);
+    padding: 6rem 0;
+    text-align: center;
+}
+
+.label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.hero h1 {
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    color: var(--stone);
+    font-size: 1.2rem;
+}
+
+.servicesList {
+    background: var(--surface);
+}
+
+.serviceItem {
+    display: flex;
+    gap: 3rem;
+    padding: 4rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.serviceItem:last-child {
+    border-bottom: none;
+}
+
+.serviceIcon {
+    font-size: 3rem;
+    flex-shrink: 0;
+}
+
+.serviceContent h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.serviceContent p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    list-style: none;
+}
+
+.features li {
+    background: var(--white);
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.cta {
+    background: var(--off-white);
+    padding: 6rem 0;
+    text-align: center;
+}
+
+.cta h2 {
+    margin-bottom: 1rem;
+}
+
+.cta p {
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .serviceItem {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .serviceContent h2 {
+        font-size: 1.5rem;
+    }
+}

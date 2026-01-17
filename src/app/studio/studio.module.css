@@ -1,0 +1,154 @@
+.main {
+    padding-top: 80px;
+}
+
+.hero {
+    background: var(--black);
+    padding: 6rem 0;
+    text-align: center;
+}
+
+.label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.hero h1 {
+    color: var(--white);
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    color: var(--stone);
+    font-size: 1.2rem;
+}
+
+.philosophy {
+    background: var(--white);
+}
+
+.philosophyContent {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.philosophyContent h2 {
+    margin-bottom: 2rem;
+}
+
+.philosophyContent p {
+    color: var(--text-light);
+    font-size: 1.15rem;
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+}
+
+.teamSection {
+    background: var(--surface);
+}
+
+.teamSection h2 {
+    margin-bottom: 4rem;
+}
+
+.teamGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.teamCard {
+    text-align: center;
+}
+
+.teamImage {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+}
+
+.teamCard:hover .teamImage {
+    filter: grayscale(0%);
+}
+
+.teamImage img {
+    object-fit: cover;
+}
+
+.teamCard h3 {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: normal;
+    margin-bottom: 0.25rem;
+}
+
+.teamCard span {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.awardsSection {
+    background: var(--black);
+}
+
+.awardsSection h2 {
+    color: var(--white);
+    margin-bottom: 4rem;
+}
+
+.awardsList {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.awardItem {
+    display: flex;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.awardYear {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--accent);
+    min-width: 80px;
+}
+
+.awardInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.awardInfo strong {
+    color: var(--white);
+    font-size: 1.1rem;
+}
+
+.awardInfo span {
+    color: var(--stone);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .teamGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .teamGrid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,133 @@
+.main {
+    padding-top: 80px;
+}
+
+.hero {
+    position: relative;
+    height: 70vh;
+    display: flex;
+    align-items: flex-end;
+}
+
+.heroImage {
+    object-fit: cover;
+}
+
+.heroOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 60%);
+}
+
+.heroContent {
+    position: relative;
+    z-index: 1;
+    padding-bottom: 4rem;
+}
+
+.category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.heroContent h1 {
+    color: var(--white);
+    font-size: 4rem;
+}
+
+.details {
+    background: var(--white);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+}
+
+.description h2 {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.description p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.9;
+}
+
+.specs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.specItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.specLabel {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-light);
+}
+
+.specValue {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.gallery {
+    background: var(--surface);
+    padding: 4rem 0;
+}
+
+.galleryGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.galleryItem {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+}
+
+.galleryItem img {
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.galleryItem:hover img {
+    transform: scale(1.05);
+}
+
+.cta {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .heroContent h1 {
+        font-size: 2.5rem;
+    }
+
+    .galleryGrid {
+        grid-template-columns: 1fr;
+    }
+}

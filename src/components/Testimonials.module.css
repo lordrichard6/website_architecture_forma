@@ -1,0 +1,97 @@
+.testimonials {
+    background: var(--white);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.quoteWrapper {
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.quote {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: var(--text-main);
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.author {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.author strong {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.author span {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.project {
+    color: var(--accent) !important;
+    font-size: 0.85rem !important;
+    margin-top: 0.5rem;
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 3rem;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--silver);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot:hover {
+    background: var(--concrete);
+}
+
+.dot.active {
+    background: var(--black);
+    transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+    .quote {
+        font-size: 1.2rem;
+    }
+
+    .quoteWrapper {
+        min-height: 320px;
+    }
+}

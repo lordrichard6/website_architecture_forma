@@ -10,13 +10,13 @@ export default function Header() {
                 </Link>
 
                 <nav className={styles.nav}>
-                    <Link href="#projects" className={styles.link}>Projects</Link>
-                    <Link href="#about" className={styles.link}>Studio</Link>
-                    <Link href="#services" className={styles.link}>Services</Link>
-                    <Link href="#contact" className={styles.link}>Contact</Link>
+                    <Link href="/#projects" className={styles.link}>Projects</Link>
+                    <Link href="/studio" className={styles.link}>Studio</Link>
+                    <Link href="/services" className={styles.link}>Services</Link>
+                    <Link href="/#contact" className={styles.link}>Contact</Link>
                 </nav>
 
-                <Link href="#contact" className={styles.cta}>
+                <Link href="/#contact" className={styles.cta}>
                     Start a Project
                 </Link>
             </div>
