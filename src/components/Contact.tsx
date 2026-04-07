@@ -1,11 +1,15 @@
 'use client';
-import { useState, FormEvent } from 'react';
+import { useState, useRef, FormEvent } from 'react';
+import { motion, useInView } from 'framer-motion';
 import styles from './Contact.module.css';
 import { MapPin, Mail, Phone, Send, CheckCircle, AlertCircle } from 'lucide-react';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
 export default function Contact() {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: '0px 0px -80px 0px' });
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -18,18 +22,20 @@ export default function Contact() {
         e.preventDefault();
         setStatus('loading');
 
-        // Simulate form submission (replace with actual EmailJS or backend integration)
         try {
-            // For demo purposes, just simulate a delay
-            await new Promise(resolve => setTimeout(resolve, 1500));
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
 
-            // In production, you would use EmailJS or a backend:
-            // await emailjs.send('service_id', 'template_id', formData, 'public_key');
+            if (!res.ok) {
+                const data = await res.json();
+                throw new Error(data.error || 'Failed to send');
+            }
 
             setStatus('success');
             setFormData({ name: '', email: '', subject: '', message: '' });
-
-            // Reset status after 5 seconds
             setTimeout(() => setStatus('idle'), 5000);
         } catch {
             setStatus('error');
@@ -39,9 +45,14 @@ export default function Contact() {
 
     return (
         <section id="contact" className={`section-padding ${styles.contact}`}>
-            <div className="container">
+            <div className="container" ref={ref}>
                 <div className={styles.wrapper}>
-                    <div className={styles.left}>
+                    <motion.div
+                        className={styles.left}
+                        initial={{ opacity: 0, x: -40 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    >
                         <span className={styles.label}>Get in Touch</span>
                         <h2>Let&apos;s Build<br />Something Great</h2>
 
@@ -74,9 +85,15 @@ export default function Contact() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    <form className={styles.form} onSubmit={handleSubmit}>
+                    <motion.form
+                        className={styles.form}
+                        onSubmit={handleSubmit}
+                        initial={{ opacity: 0, x: 40 }}
+                        animate={isInView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ delay: 0.15, duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    >
                         {status === 'success' && (
                             <div className={styles.successMessage}>
                                 <CheckCircle size={24} />
@@ -142,7 +159,7 @@ export default function Contact() {
                                 </>
                             )}
                         </button>
-                    </form>
+                    </motion.form>
                 </div>
             </div>
         </section>

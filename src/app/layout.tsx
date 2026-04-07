@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Inter } from "next/font/google";
+import Cursor from "@/components/Cursor";
 import "./globals.css";
 
 const bebas = Bebas_Neue({
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     default: 'FORMA | Architecture Studio Zurich',
     template: '%s | FORMA Architects',
   },
-  description: 'Award-winning architecture studio in Zurich, Switzerland. We design bold, timeless spaces for residential, commercial, and public projects. 25+ years of design excellence.',
+  description: 'Award-winning architecture studio in Zurich, Switzerland. We design bold, timeless spaces for residential, commercial, and public projects. 20+ years of design excellence.',
   keywords: ['architecture', 'Zurich', 'Switzerland', 'architect', 'design studio', 'residential', 'commercial', 'interior design', 'urban planning'],
   authors: [{ name: 'FORMA Architects' }],
   openGraph: {
@@ -79,7 +80,7 @@ const jsonLd = {
     latitude: 47.3769,
     longitude: 8.5417,
   },
-  foundingDate: '1999',
+  foundingDate: '2005',
   numberOfEmployees: '50+',
   areaServed: 'Switzerland',
   sameAs: [
@@ -100,6 +101,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <Cursor />
         {children}
       </body>
     </html>

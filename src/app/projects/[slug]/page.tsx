@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -86,6 +87,25 @@ const projects: Record<string, {
 
 interface ProjectPageProps {
     params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+    const { slug } = await params;
+    const project = projects[slug];
+
+    if (!project) {
+        return { title: 'Project Not Found' };
+    }
+
+    return {
+        title: project.title,
+        description: project.description.slice(0, 155),
+        openGraph: {
+            title: project.title,
+            description: project.description.slice(0, 155),
+            images: [{ url: project.image, width: 1200, height: 800, alt: project.title }],
+        },
+    };
 }
 
 export async function generateStaticParams() {
