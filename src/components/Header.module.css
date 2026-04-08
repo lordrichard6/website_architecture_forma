@@ -31,23 +31,19 @@
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    font-family: var(--font-display);
-    font-size: 1.75rem;
-    letter-spacing: 6px;
-    color: var(--black);
-    text-decoration: none;
     z-index: 101;
-    transition: color 0.4s ease;
+    text-decoration: none;
 }
 
-.transparent .logo {
-    color: var(--white);
+.logoImg {
+    height: 36px;
+    width: auto;
+    display: block;
+    transition: opacity 0.3s ease;
 }
 
-.logoMark {
-    flex-shrink: 0;
-    transition: color 0.4s ease;
+.logo:hover .logoImg {
+    opacity: 0.75;
 }
 
 /* ─── Desktop nav ───────────────────────────────────────── */
@@ -145,10 +141,10 @@
     color: var(--white);
 }
 
-/* When menu is open, button always shows dark (over white overlay) */
 .header:has(.open) .menuBtn {
     color: var(--black);
 }
+
 
 /* ─── Mobile overlay ────────────────────────────────────── */
 .mobileMenu {

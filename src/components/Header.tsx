@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
@@ -54,13 +55,14 @@ export default function Header() {
             <div className={`container ${styles.container}`}>
                 {/* Logo */}
                 <Link href="/" className={styles.logo} onClick={close}>
-                    <svg className={styles.logoMark} width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-                        <rect x="0.75" y="0.75" width="11.5" height="11.5" stroke="currentColor" strokeWidth="1.5" />
-                        <rect x="15.75" y="0.75" width="11.5" height="11.5" stroke="currentColor" strokeWidth="1.5" />
-                        <rect x="0.75" y="15.75" width="11.5" height="11.5" stroke="currentColor" strokeWidth="1.5" />
-                        <rect x="15.75" y="15.75" width="11.5" height="11.5" fill="currentColor" strokeWidth="0" />
-                    </svg>
-                    <span>FORMA</span>
+                    <Image
+                        src={isTransparent && !isOpen ? '/forma_logo_white_full.svg' : '/forma_logo_black_full.svg'}
+                        alt="FORMA Architects"
+                        width={140}
+                        height={40}
+                        className={styles.logoImg}
+                        priority
+                    />
                 </Link>
 
                 {/* Desktop nav */}
