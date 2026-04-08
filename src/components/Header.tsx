@@ -25,6 +25,9 @@ export default function Header() {
 
     const close = useCallback(() => setIsOpen(false), []);
 
+    // Close on route change
+    useEffect(() => { close(); }, [pathname, close]);
+
     // Close on Escape key
     useEffect(() => {
         const handler = (e: KeyboardEvent) => {
@@ -98,7 +101,7 @@ export default function Header() {
                 role="dialog"
                 aria-modal="true"
                 aria-label="Navigation menu"
-                inert={!isOpen}
+                inert={!isOpen || undefined}
             >
                 <nav className={styles.mobileNav} aria-label="Mobile navigation">
                     <Link href="/#projects" className={styles.mobileLink} onClick={close}>Projects</Link>

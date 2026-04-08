@@ -31,7 +31,7 @@
 .logo {
     display: flex;
     align-items: center;
-    z-index: 101;
+    z-index: 103;
     text-decoration: none;
 }
 
@@ -160,7 +160,7 @@
     cursor: pointer;
     padding: 0.5rem;
     color: var(--black);
-    z-index: 101;
+    z-index: 103;
     transition: color 0.4s ease;
 }
 
@@ -168,7 +168,9 @@
     color: var(--white);
 }
 
-.header:has(.open) .menuBtn {
+/* Menu open: always dark — overlay is ivory regardless of hero type */
+.header:has(.open) .menuBtn,
+.transparent.header:has(.open) .menuBtn {
     color: var(--black);
 }
 
@@ -180,7 +182,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 99;
+    z-index: 102; /* above header (100) and below logo/btn (103) */
     /* Clip-path wipe: hidden (clipped upward) → revealed */
     clip-path: inset(0 0 100% 0);
     transition: clip-path 0.5s cubic-bezier(0.76, 0, 0.24, 1);
