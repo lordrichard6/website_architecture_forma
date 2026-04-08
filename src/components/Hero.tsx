@@ -18,16 +18,15 @@ export default function Hero() {
 
     return (
         <section className={styles.hero}>
-            {/* Background image with Ken Burns */}
-            <div className={styles.bgWrap}>
-                <Image
-                    src="/hero.webp"
-                    alt="FORMA Architecture"
-                    fill
-                    className={styles.bgImage}
-                    priority
-                />
-            </div>
+            {/* Video background */}
+            <video
+                className={styles.bgVideo}
+                src="/hero.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+            />
 
             {/* Slate-tinted overlay */}
             <div className={styles.overlay} />
