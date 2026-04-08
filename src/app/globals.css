@@ -1,18 +1,17 @@
 :root {
-  /* Minimalist Architecture Palette */
-  --black: #0A0A0A;
-  --charcoal: #1A1A1A;
-  --concrete: #4A4A4A;
-  --stone: #8A8A8A;
-  --silver: #C0C0C0;
+  /* Warm Slate + Sage — Architecture Material Palette */
+  --black: #1A2228;       /* deep slate — more character than pure black */
+  --charcoal: #2C3840;    /* mid-slate */
+  --concrete: #52606A;    /* slate-tinted text */
+  --stone: #8A9098;       /* muted stone */
+  --silver: #C2C8CC;      /* cool silver */
   --white: #FFFFFF;
-  --off-white: #F5F5F5;
+  --off-white: #EDEBE4;   /* travertine — warm, not cold grey */
 
-  --accent: #C9A227;
-  /* Muted gold for subtle luxury */
+  --accent: #6E8C7A;      /* muted sage / oxidized copper */
 
-  --background: var(--white);
-  --surface: var(--off-white);
+  --background: #F8F5F0;  /* warm ivory page background */
+  --surface: var(--off-white); /* travertine surfaces */
 
   --text-main: var(--black);
   --text-light: var(--concrete);
