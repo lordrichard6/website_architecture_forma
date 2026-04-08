@@ -1,17 +1,28 @@
+/* ─── Section — dark ────────────────────────────────────── */
 .projects {
-    background: var(--off-white);
+    background: var(--black);
+    position: relative;
 }
 
+/* Grain pseudo sits behind all content via z-index on container */
+.projects > .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ─── Header ────────────────────────────────────────────── */
 .header {
     margin-bottom: 4rem;
+    max-width: 600px;
 }
 
 .header h2 {
+    color: var(--white);
     margin-bottom: 1rem;
 }
 
 .header p {
-    color: var(--text-light);
+    color: var(--stone);
     font-size: 1.1rem;
 }
 
@@ -24,6 +35,7 @@
     margin-bottom: 1rem;
 }
 
+/* ─── Filters ───────────────────────────────────────────── */
 .filters {
     display: flex;
     gap: 0.75rem;
@@ -32,59 +44,76 @@
 }
 
 .filterBtn {
-    padding: 0.6rem 1.5rem;
+    padding: 0.85rem 1.5rem;
     background: transparent;
-    border: 1px solid var(--stone);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     font-family: var(--font-body);
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     cursor: pointer;
-    color: var(--text-light);
-    transition: all 0.3s ease;
+    color: var(--stone);
+    transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
 }
 
-.filterBtn:hover {
-    border-color: var(--black);
-    color: var(--black);
+.filterBtn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
 }
 
 .filterActive {
-    background: var(--black);
-    border-color: var(--black);
+    background: var(--accent);
+    border-color: var(--accent);
     color: var(--white);
 }
 
+/* ─── Grid ──────────────────────────────────────────────── */
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
 }
 
-.card {
-    cursor: pointer;
+/* Featured layout — first item spans 2 columns */
+.gridFeatured .featuredItem {
+    grid-column: span 2;
 }
 
+/* ─── Card ──────────────────────────────────────────────── */
+.card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.card:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* ─── Image ─────────────────────────────────────────────── */
 .imageWrapper {
     position: relative;
     aspect-ratio: 4/5;
     overflow: hidden;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+/* Featured card gets landscape ratio */
+.imageWrapperFeatured {
+    aspect-ratio: 3/2;
 }
 
 .image {
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.6s ease;
 }
 
-.card:hover .image {
-    transform: scale(1.05);
-}
-
+/* ─── Overlay ───────────────────────────────────────────── */
 .overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 50%);
+    background: linear-gradient(to top, rgba(26, 34, 40, 0.7) 0%, transparent 50%);
     display: flex;
     align-items: flex-end;
     padding: 1.5rem;
@@ -92,19 +121,40 @@
     transition: opacity 0.3s ease;
 }
 
-.card:hover .overlay {
-    opacity: 1;
-}
-
 .category {
-    color: white;
-    font-size: 0.75rem;
+    color: var(--white);
+    font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    padding: 0.5rem 1rem;
-    border: 1px solid white;
+    padding: 0.4rem 0.85rem;
+    background: rgba(26, 34, 40, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
+/* ─── Hover (pointer devices only) ─────────────────────── */
+@media (hover: hover) {
+    .filterBtn:hover {
+        border-color: rgba(255, 255, 255, 0.8);
+        color: var(--white);
+    }
+
+    .card:hover .image {
+        transform: scale(1.05);
+    }
+
+    .card:hover .overlay {
+        opacity: 1;
+    }
+}
+
+/* ─── Touch devices — overlay always partially visible ──── */
+@media (hover: none) {
+    .overlay {
+        opacity: 0.55;
+    }
+}
+
+/* ─── Info row ──────────────────────────────────────────── */
 .info {
     display: flex;
     justify-content: space-between;
@@ -117,21 +167,82 @@
     font-weight: 500;
     text-transform: none;
     letter-spacing: normal;
+    color: var(--white);
 }
 
 .year {
     font-size: 0.85rem;
-    color: var(--text-light);
+    color: var(--stone);
 }
 
+/* ─── CTA ───────────────────────────────────────────────── */
 .cta {
     text-align: center;
     margin-top: 4rem;
 }
 
+.ctaBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 2.5rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--accent);
+    transition: background 0.3s ease, color 0.3s ease, gap 0.3s ease;
+}
+
+.ctaArrow {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.ctaBtn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+@media (hover: hover) {
+    .ctaBtn:hover {
+        background: var(--accent);
+        color: var(--white);
+        gap: 0.9rem;
+    }
+
+    .ctaBtn:hover .ctaArrow {
+        transform: translateX(3px);
+    }
+}
+
+/* ─── Reduced motion ────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .image,
+    .overlay,
+    .filterBtn,
+    .ctaBtn,
+    .ctaArrow {
+        transition: none;
+    }
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
 @media (max-width: 900px) {
     .grid {
         grid-template-columns: 1fr 1fr;
+    }
+
+    /* Remove featured span on smaller screens — no room */
+    .gridFeatured .featuredItem {
+        grid-column: span 1;
+    }
+
+    .imageWrapperFeatured {
+        aspect-ratio: 4/5;
     }
 }
 

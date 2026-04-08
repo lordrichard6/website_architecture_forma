@@ -42,8 +42,10 @@
     transition: opacity 0.3s ease;
 }
 
-.logo:hover .logoImg {
-    opacity: 0.75;
+@media (hover: hover) {
+    .logo:hover .logoImg {
+        opacity: 0.75;
+    }
 }
 
 /* ─── Desktop nav ───────────────────────────────────────── */
@@ -73,14 +75,22 @@
     transition: width 0.3s ease;
 }
 
-.link:hover,
 .link.active {
     color: var(--black);
 }
 
-.link:hover::after,
 .link.active::after {
     width: 100%;
+}
+
+@media (hover: hover) {
+    .link:hover {
+        color: var(--black);
+    }
+
+    .link:hover::after {
+        width: 100%;
+    }
 }
 
 /* White links when transparent */
@@ -88,9 +98,22 @@
     color: rgba(255, 255, 255, 0.75);
 }
 
-.transparent .link:hover,
 .transparent .link.active {
     color: var(--white);
+}
+
+.transparent .link.active::after {
+    width: 100%;
+}
+
+@media (hover: hover) {
+    .transparent .link:hover {
+        color: var(--white);
+    }
+
+    .transparent .link:hover::after {
+        width: 100%;
+    }
 }
 
 /* ─── Desktop CTA ───────────────────────────────────────── */
@@ -106,10 +129,12 @@
     transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-.cta:hover {
-    background: transparent;
-    color: var(--black);
-    border-color: var(--black);
+@media (hover: hover) {
+    .cta:hover {
+        background: transparent;
+        color: var(--black);
+        border-color: var(--black);
+    }
 }
 
 /* When transparent, invert CTA */
@@ -119,10 +144,12 @@
     border-color: rgba(255, 255, 255, 0.6);
 }
 
-.transparent .cta:hover {
-    background: var(--white);
-    color: var(--black);
-    border-color: var(--white);
+@media (hover: hover) {
+    .transparent .cta:hover {
+        background: var(--white);
+        color: var(--black);
+        border-color: var(--white);
+    }
 }
 
 /* ─── Mobile toggle ─────────────────────────────────────── */
@@ -145,12 +172,11 @@
     color: var(--black);
 }
 
-
 /* ─── Mobile overlay ────────────────────────────────────── */
 .mobileMenu {
     position: fixed;
     inset: 0;
-    background: var(--white);
+    background: var(--background); /* warm ivory — consistent with palette */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -203,12 +229,14 @@
     transition: width 0.3s ease;
 }
 
-.mobileLink:hover {
-    color: var(--accent);
-}
+@media (hover: hover) {
+    .mobileLink:hover {
+        color: var(--accent);
+    }
 
-.mobileLink:hover::after {
-    width: 100%;
+    .mobileLink:hover::after {
+        width: 100%;
+    }
 }
 
 .mobileCta {
@@ -220,11 +248,26 @@
     color: var(--white);
     background: var(--accent);
     padding: 1rem 2.5rem;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-.mobileCta:hover {
-    background: var(--black);
+@media (hover: hover) {
+    .mobileCta:hover {
+        background: var(--black);
+    }
+}
+
+/* ─── Reduced motion ────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .logoImg,
+    .link,
+    .link::after,
+    .cta,
+    .mobileLink,
+    .mobileLink::after,
+    .mobileCta {
+        transition: none;
+    }
 }
 
 /* ─── Responsive ────────────────────────────────────────── */

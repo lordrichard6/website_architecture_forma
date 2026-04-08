@@ -1,11 +1,53 @@
-.main {
-    padding-top: 80px;
-}
+/* Hero carries the header offset — no top padding on main */
 
+/* ─── Hero — dark ────────────────────────────────────────── */
 .hero {
     background: var(--black);
-    padding: 6rem 0;
+    /* #6 — taller hero for architectural breathing room */
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    padding: 10rem 0 7rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* #5 — subtle geometric line grid: zero cost, pure CSS, architecture-appropriate */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Ghosted watermark */
+.heroGhost {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: clamp(8rem, 20vw, 18rem);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.04);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+/* Content sits above grid pattern and watermark */
+.heroContent {
+    position: relative;
+    z-index: 2;
 }
 
 .label {
@@ -17,143 +59,316 @@
     margin-bottom: 1rem;
 }
 
-.hero h1 {
+/* #3 + #4 — word-split container with tight tracking */
+.heroHeading {
     color: var(--white);
-    margin-bottom: 1rem;
+    /* #4 — tight tracking prevents spaced-out look at large clamp sizes */
+    letter-spacing: -0.02em;
+    margin-bottom: 0;
+    line-height: 1.05;
 }
 
-.hero p {
+/* Each split word is inline-block so y-transform works independently */
+.heroWord {
+    display: inline-block;
+}
+
+/* Space between words via margin on all but the last */
+.heroWord:not(:last-child) {
+    margin-right: 0.3em;
+}
+
+/* #8 — sage accent rule between heading and sub-copy */
+.heroRule {
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: var(--accent);
+    margin: 1.5rem auto 1.75rem;
+}
+
+.heroSub {
     color: var(--stone);
     font-size: 1.2rem;
+    line-height: 1.75;
+    max-width: 55ch;
+    margin: 0 auto 2.5rem;
 }
 
+/* #1 — CTA anchor to services list */
+.heroCta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.3s ease, gap 0.3s ease;
+}
+
+.heroCta:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* ─── Scroll indicator ───────────────────────────────────── */
+.scrollIndicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 2;
+}
+
+.scrollLine {
+    display: block;
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.35));
+    animation: scrollDrop 1.8s ease-in-out infinite;
+}
+
+.scrollLabel {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+@keyframes scrollDrop {
+    0%, 100% { opacity: 0.4; transform: scaleY(0.6); transform-origin: top; }
+    50%       { opacity: 1;   transform: scaleY(1);   transform-origin: top; }
+}
+
+/* ─── Services list ─────────────────────────────────────── */
 .servicesList {
     background: var(--surface);
 }
 
-.serviceItem {
-    display: flex;
-    gap: 3rem;
-    padding: 4rem 0;
+/* ─── Section intro ─────────────────────────────────────── */
+.servicesIntro {
+    padding-bottom: 3.5rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    align-items: flex-start;
-    transition: all 0.3s ease;
+    margin-bottom: 0;
 }
 
-.serviceItem:hover {
-    transform: translateX(10px);
+.servicesEyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.servicesHeading {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    color: var(--black);
+    margin: 0;
+}
+
+/* ─── Service item ──────────────────────────────────────── */
+.serviceItem {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 4.5rem;
+    padding: 5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    align-items: start;
+}
+
+/* #9 — reversed layout: image switches to right side */
+.serviceItemReversed {
+    grid-template-columns: 1fr 300px;
 }
 
 .serviceItem:last-child {
     border-bottom: none;
 }
 
-.serviceIcon {
-    flex-shrink: 0;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--white);
-    border-radius: 50%;
-    color: var(--black);
-    transition: all 0.4s ease;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+/* ─── Image column ──────────────────────────────────────── */
+.serviceImageWrap {
+    position: relative;
+    width: 100%;
+    /* #8 — 4:3 ratio gives photography room to breathe */
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
 }
 
-.serviceItem:hover .serviceIcon {
-    background: var(--black);
-    color: var(--accent);
-    transform: rotate(10deg) scale(1.05);
+/* Pushes image to second column when layout is reversed */
+.serviceImageRight {
+    order: 2;
 }
 
-.serviceContent h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+.serviceImg {
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+/* ─── Content column ────────────────────────────────────── */
+.serviceContent {
+    padding-top: 0.5rem;
+}
+
+/* Pulls content to first column when layout is reversed */
+.serviceContentLeft {
+    order: 1;
+}
+
+/* #12 — large ghost number as architectural graphic */
+.serviceNum {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 700;
+    color: rgba(110, 140, 122, 0.22);
+    letter-spacing: -1px;
+    line-height: 1;
+    display: block;
+    margin-bottom: 1rem;
     transition: color 0.3s ease;
 }
 
-.serviceItem:hover .serviceContent h2 {
-    color: var(--accent);
+.serviceTitle {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 1.25rem;
+    transition: color 0.3s ease;
 }
 
 .serviceContent p {
     color: var(--text-light);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 1.8;
     margin-bottom: 2rem;
 }
 
+/* ─── Feature tags ──────────────────────────────────────── */
 .features {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .features li {
     background: var(--white);
     padding: 0.5rem 1rem;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    letter-spacing: 1.5px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* #10 — smooth transition for accent hover */
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
-.features li:hover {
-    background: var(--black);
-    color: var(--white);
-    border-color: var(--black);
+.features li::before {
+    content: '·';
+    color: var(--accent);
+    font-size: 1.4rem;
+    line-height: 1;
+    flex-shrink: 0;
 }
 
-.cta {
-    background: var(--off-white);
-    padding: 6rem 0;
-    text-align: center;
+/* ─── Hover — pointer devices only ─────────────────────── */
+@media (hover: hover) {
+    .heroCta:hover {
+        color: var(--white);
+        gap: 0.9rem;
+    }
+
+    .serviceItem:hover .serviceNum {
+        color: rgba(110, 140, 122, 0.45);
+    }
+
+    .serviceItem:hover .serviceTitle {
+        color: var(--accent);
+    }
+
+    .serviceItem:hover .serviceImg {
+        transform: scale(1.04);
+    }
+
+    /* #10 — accent tint instead of full black fill */
+    .features li:hover {
+        background: rgba(110, 140, 122, 0.1);
+        border-color: var(--accent);
+        color: var(--black);
+    }
 }
 
-.cta h2 {
-    margin-bottom: 1rem;
+/* ─── Reduced motion ────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .scrollLine {
+        animation: none;
+        opacity: 0.35;
+    }
+
+    .serviceImg,
+    .serviceTitle,
+    .serviceNum,
+    .heroCta,
+    .features li {
+        transition: none;
+    }
 }
 
-.cta p {
-    color: var(--text-light);
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
+/* ─── Responsive ────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    .serviceItem {
+        grid-template-columns: 260px 1fr;
+        gap: 3.5rem;
+    }
+
+    .serviceItemReversed {
+        grid-template-columns: 1fr 260px;
+    }
 }
 
 @media (max-width: 768px) {
     .hero {
-        padding: 4rem 0;
+        padding: 8rem 0 5rem;
+        min-height: 60vh;
     }
 
-    .hero h1 {
-        font-size: 2.5rem;
+    .scrollIndicator {
+        display: none;
     }
 
-    .serviceItem {
-        flex-direction: column;
-        gap: 1.5rem;
-        padding: 3rem 0;
+    /* Single-column on mobile — reset both normal and reversed */
+    .serviceItem,
+    .serviceItemReversed {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 3.5rem 0;
     }
 
-    .serviceItem:hover {
-        transform: translateX(0);
+    /* Reset visual order — image always on top on mobile */
+    .serviceImageRight,
+    .serviceContentLeft {
+        order: unset;
     }
 
-    .serviceIcon {
-        width: 80px;
-        height: 80px;
+    /* Wider ratio on mobile — image not too tall */
+    .serviceImageWrap {
+        aspect-ratio: 16 / 9;
     }
 
-    .serviceContent h2 {
-        font-size: 1.5rem;
-    }
-
-    .serviceContent p {
-        font-size: 1rem;
+    .serviceNum {
+        font-size: clamp(2rem, 6vw, 2.5rem);
     }
 
     .features {
@@ -163,13 +378,5 @@
     .features li {
         font-size: 0.75rem;
         padding: 0.4rem 0.75rem;
-    }
-
-    .cta {
-        padding: 4rem 0;
-    }
-
-    .cta h2 {
-        font-size: 2rem;
     }
 }

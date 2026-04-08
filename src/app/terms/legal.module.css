@@ -1,47 +1,220 @@
-.main {
-    padding-top: 120px;
-    padding-bottom: 6rem;
-    min-height: 100vh;
+/* ─── Dark hero ──────────────────────────────────────────── */
+.hero {
+    background: var(--black);
+    padding: 10rem 0 6rem;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
 }
 
-.backLink {
-    display: inline-block;
-    margin-bottom: 2rem;
-    font-size: 0.9rem;
-    color: var(--text-light);
+/* Subtle geometric grid */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 64px 64px;
+    pointer-events: none;
 }
 
-.backLink:hover {
-    color: var(--black);
+.heroContent {
+    position: relative;
+    z-index: 1;
 }
 
-.main h1 {
-    margin-bottom: 0.5rem;
-}
-
-.date {
-    color: var(--text-light);
-    font-size: 0.9rem;
-    margin-bottom: 3rem;
-}
-
-.section {
-    margin-bottom: 2.5rem;
-}
-
-.section h2 {
-    font-size: 1.3rem;
+.heroEyebrow {
+    display: block;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
     margin-bottom: 1rem;
+}
+
+.heroHeading {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.heroRule {
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: var(--accent);
+    margin: 1.5rem auto 1.25rem;
+}
+
+.heroMeta {
+    font-size: 0.82rem;
+    color: var(--stone);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+/* ─── Content section ────────────────────────────────────── */
+.contentSection {
+    background: var(--background);
+}
+
+/* Cap line length for readability — legal text */
+.contentWrap {
+    max-width: 72ch;
+}
+
+/* ─── Back link ──────────────────────────────────────────── */
+.backLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--stone);
+    text-decoration: none;
+    margin-bottom: 3.5rem;
+    transition: color 0.2s ease, gap 0.2s ease;
+}
+
+/* ─── Table of contents ─────────────────────────────────── */
+.toc {
+    background: var(--white);
+    border-left: 3px solid var(--accent);
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 3.5rem;
+}
+
+.tocTitle {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--black);
+    font-weight: 500;
+    margin: 0 0 1rem;
+}
+
+.tocList {
+    margin: 0;
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.tocLink {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    text-decoration: none;
+    line-height: 1.5;
+    transition: color 0.2s ease;
+}
+
+@media (hover: hover) {
+    .tocLink:hover {
+        color: var(--accent);
+    }
+}
+
+/* ─── Sections ───────────────────────────────────────────── */
+.section {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--silver, #E0DDD6);
+}
+
+.section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Numbered heading with ghost accent number */
+.sectionHeading {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    color: var(--black);
+    letter-spacing: -0.01em;
+    margin-bottom: 1.25rem;
+    line-height: 1.3;
+}
+
+.sectionNum {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: rgba(110, 140, 122, 0.25);
+    letter-spacing: -1px;
+    line-height: 1;
+    flex-shrink: 0;
+    user-select: none;
 }
 
 .section p {
     color: var(--text-light);
-    line-height: 1.8;
+    font-size: 0.97rem;
+    line-height: 1.85;
     margin-bottom: 1rem;
+}
+
+.section p:last-child {
+    margin-bottom: 0;
 }
 
 .section ul {
     color: var(--text-light);
+    font-size: 0.97rem;
+    line-height: 1.85;
     padding-left: 1.5rem;
-    line-height: 2;
+    margin-bottom: 1rem;
+}
+
+.section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.section ul li:last-child {
+    margin-bottom: 0;
+}
+
+/* ─── Inline link ────────────────────────────────────────── */
+.inlineLink {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+}
+
+/* ─── Hover — pointer devices only ─────────────────────── */
+@media (hover: hover) {
+    .backLink:hover {
+        color: var(--black);
+        gap: 0.75rem;
+    }
+
+    .inlineLink:hover {
+        color: var(--black);
+    }
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .hero {
+        padding: 8rem 0 4.5rem;
+    }
+}
+
+/* ─── Reduced motion ────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .backLink,
+    .inlineLink {
+        transition: none;
+    }
 }

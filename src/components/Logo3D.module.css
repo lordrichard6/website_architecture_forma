@@ -1,0 +1,18 @@
+/* ── Fixed 3D brand mark — centered, layered over page watermark ── */
+.logo3d {
+    position: fixed;
+    /* Mirror the hero logoMarkWrap: top: 6rem, right: 3rem, size: 220×220 */
+    top: calc(6rem);
+    right: 3rem;
+    width: 220px;
+    height: 220px;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.92;
+}
+
+@media (max-width: 1024px) {
+    .logo3d {
+        display: none;
+    }
+}

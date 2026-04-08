@@ -5,12 +5,12 @@ import Stats from "@/components/Stats";
 import Projects from "@/components/Projects";
 import Testimonials from "@/components/Testimonials";
 import About from "@/components/About";
-import Contact from "@/components/Contact";
+import CTABanner from "@/components/CTABanner";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main>
+    <main id="top">
       <Header />
       <Hero />
       <Services />
@@ -18,7 +18,7 @@ export default function Home() {
       <Projects />
       <Testimonials />
       <About />
-      <Contact />
+      <CTABanner />
       <Footer />
     </main>
   );

@@ -1,8 +1,19 @@
+/* ─── Footer — dark + grain ──────────────────────────────── */
 .footer {
     background: var(--black);
     padding: 5rem 0 2rem;
+    position: relative;
+    /* Sage cap — deliberate material separator from light CTABanner above */
+    border-top: 3px solid var(--accent);
 }
 
+/* Raise content above grain pseudo-element */
+.inner {
+    position: relative;
+    z-index: 1;
+}
+
+/* ─── Four-column grid ───────────────────────────────────── */
 .grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -11,32 +22,22 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* ─── Brand column ───────────────────────────────────────── */
 .brand {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem;
 }
 
 .logoLink {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    display: inline-flex;
     text-decoration: none;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 
-.logoIcon {
-    width: 32px;
-    height: 32px;
-    filter: invert(1);
-    opacity: 0.9;
-}
-
-.logo {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    color: var(--white);
-    letter-spacing: 4px;
+.logoImg {
+    /* Preserve crisp SVG rendering */
+    display: block;
 }
 
 .tagline {
@@ -44,33 +45,75 @@
     font-size: 0.95rem;
 }
 
+.address {
+    font-style: normal;
+    color: var(--stone);
+    font-size: 0.875rem;
+    line-height: 1.7;
+}
+
+.email {
+    color: var(--silver);
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.email:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+@media (hover: hover) {
+    .email:hover {
+        color: var(--accent);
+    }
+}
+
+/* ─── Link columns ───────────────────────────────────────── */
 .links {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
 }
 
-.links h4 {
+/* Styled <p> replaces <h4> — avoids heading landmarks inside nav landmarks */
+.colHead {
     font-family: var(--font-body);
     font-size: 0.75rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--stone);
     margin-bottom: 0.5rem;
+    /* Reset any inherited heading styles */
+    line-height: inherit;
 }
 
 .links a {
     color: var(--silver);
     font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-.links a:hover {
-    color: var(--white);
+.links a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
 }
 
+@media (hover: hover) {
+    .links a:hover {
+        color: var(--white);
+    }
+}
+
+/* ─── Bottom bar ─────────────────────────────────────────── */
 .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding-top: 2rem;
-    text-align: center;
 }
 
 .copy {
@@ -78,6 +121,58 @@
     font-size: 0.8rem;
 }
 
+.madeBy {
+    font-size: 0.75rem;
+    color: var(--stone);
+}
+
+.madeByLink {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+@media (hover: hover) {
+    .madeByLink:hover {
+        color: var(--white);
+    }
+}
+
+/* ─── Back to top ────────────────────────────────────────── */
+.backToTop {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--stone);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.backToTop:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+@media (hover: hover) {
+    .backToTop:hover {
+        color: var(--white);
+    }
+}
+
+/* ─── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .links a,
+    .backToTop {
+        transition: none;
+    }
+}
+
+/* ─── Responsive: tablet ─────────────────────────────────── */
 @media (max-width: 900px) {
     .grid {
         grid-template-columns: 1fr 1fr;
@@ -88,6 +183,7 @@
     }
 }
 
+/* ─── Responsive: mobile ─────────────────────────────────── */
 @media (max-width: 500px) {
     .grid {
         grid-template-columns: 1fr;
@@ -95,5 +191,11 @@
 
     .brand {
         grid-column: span 1;
+    }
+
+    .bottom {
+        flex-direction: column;
+        gap: 1.25rem;
+        text-align: center;
     }
 }

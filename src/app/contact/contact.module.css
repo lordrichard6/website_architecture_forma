@@ -1,0 +1,610 @@
+/* ─── Hero — dark ────────────────────────────────────────── */
+.hero {
+    background: var(--black);
+    min-height: 65vh;
+    display: flex;
+    align-items: center;
+    padding: 10rem 0 7rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle geometric line grid */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 64px 64px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.heroGhost {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: clamp(8rem, 20vw, 18rem);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.04);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.heroContent {
+    position: relative;
+    z-index: 2;
+}
+
+.label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.heroHeading {
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-bottom: 0;
+    line-height: 1.05;
+}
+
+.heroWord {
+    display: inline-block;
+}
+
+.heroWord:not(:last-child) {
+    margin-right: 0.3em;
+}
+
+.heroRule {
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: var(--accent);
+    margin: 1.5rem auto 1.75rem;
+}
+
+.heroSub {
+    color: var(--stone);
+    font-size: 1.15rem;
+    line-height: 1.75;
+    max-width: 50ch;
+    margin: 0 auto;
+}
+
+/* ─── Scroll indicator ───────────────────────────────────── */
+.scrollIndicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 2;
+}
+
+.scrollLine {
+    display: block;
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.35));
+    animation: scrollDrop 1.8s ease-in-out infinite;
+}
+
+.scrollLabel {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+@keyframes scrollDrop {
+    0%, 100% { opacity: 0.4; transform: scaleY(0.6); transform-origin: top; }
+    50%       { opacity: 1;   transform: scaleY(1);   transform-origin: top; }
+}
+
+/* ─── Contact section ────────────────────────────────────── */
+.contactSection {
+    background: var(--background);
+}
+
+.contactGrid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 6rem;
+    align-items: start;
+}
+
+/* ─── Info column ────────────────────────────────────────── */
+.infoCol {
+    position: sticky;
+    top: 7rem;
+}
+
+/* Ghost number — ties back to service number design language */
+.ghostNum {
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 8vw, 8rem);
+    font-weight: 700;
+    color: rgba(110, 140, 122, 0.12);
+    letter-spacing: -3px;
+    line-height: 1;
+    display: block;
+    margin-bottom: 1.5rem;
+    user-select: none;
+}
+
+.eyebrow {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.infoHeading {
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    line-height: 1.15;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+}
+
+.infoDesc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-light);
+    margin-bottom: 3rem;
+    max-width: 42ch;
+}
+
+/* Contact detail list */
+.infoList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    margin-bottom: 2.5rem;
+}
+
+/* Each item: left 2px sage border — architectural, not circular icon wrappers */
+.infoItem {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--accent);
+    transition: border-color 0.25s ease;
+}
+
+.infoIcon {
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.infoLabel {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--black);
+    display: block;
+    margin-bottom: 0.35rem;
+}
+
+.infoLink {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    text-decoration: none;
+    line-height: 1.6;
+    transition: color 0.2s ease;
+}
+
+.infoText {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.responseNote {
+    font-size: 0.82rem;
+    color: var(--stone);
+    padding-left: 1.25rem;
+    border-left: 1px solid var(--silver);
+    line-height: 1.6;
+}
+
+/* ─── Form column ────────────────────────────────────────── */
+.formCol {
+    background: var(--white);
+    padding: 3.5rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+/* Two-column field row */
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Always-visible label — uppercase, tracked (directive §6B) */
+.fieldLabel {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--black);
+    font-weight: 500;
+}
+
+.required {
+    color: var(--accent);
+}
+
+.optional {
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    color: var(--stone);
+    font-size: 0.7rem;
+}
+
+/* ─── Inputs, selects, textarea ─────────────────────────── */
+.input,
+.select,
+.textarea {
+    width: 100%;
+    padding: 0.9rem 1.1rem;
+    background: var(--background);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--black);
+    transition: border-color 0.2s ease, background 0.2s ease;
+    border-radius: 0;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+    color: var(--stone);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: var(--white);
+}
+
+.select:focus {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E8C7A' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.1rem center;
+}
+
+.input:disabled,
+.select:disabled,
+.textarea:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+/* Custom select chevron */
+.select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231A2228' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1.1rem center;
+    padding-right: 2.75rem;
+    cursor: pointer;
+    color: var(--black);
+}
+
+/* Unselected select placeholder styling */
+.select:invalid,
+.select option[value=''] {
+    color: var(--stone);
+}
+
+/* ─── Submit button ──────────────────────────────────────── */
+.submitBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 1.1rem 2rem;
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    cursor: pointer;
+    transition: background 0.25s ease, letter-spacing 0.25s ease;
+    border-radius: 0;
+}
+
+.submitBtn:disabled {
+    cursor: not-allowed;
+    opacity: 0.75;
+}
+
+.submitBtn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.submitLoading {
+    background: var(--stone);
+}
+
+.spinner {
+    display: block;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--white);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.formNote {
+    font-size: 0.72rem;
+    color: var(--stone);
+    text-align: center;
+    line-height: 1.5;
+    margin-top: -0.5rem;
+}
+
+/* ─── Per-field validation ───────────────────────────────── */
+.inputError {
+    border-color: #B43C3C !important;
+    background: rgba(180, 60, 60, 0.03) !important;
+}
+
+.fieldError {
+    font-size: 0.7rem;
+    color: #B43C3C;
+    line-height: 1.4;
+    margin-top: -0.15rem;
+}
+
+/* ─── Screen reader only ─────────────────────────────────── */
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ─── Inline error banner ────────────────────────────────── */
+.errorMsg {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    background: rgba(180, 60, 60, 0.07);
+    border-left: 3px solid #B43C3C;
+    color: #7A2020;
+}
+
+/* ─── Full-card success state ───────────────────────────── */
+.successCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5rem 3.5rem;
+    background: var(--white);
+    min-height: 480px;
+    gap: 0;
+}
+
+/* Animated check circle */
+.checkCircle {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(110, 140, 122, 0.1);
+    border: 1.5px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    flex-shrink: 0;
+}
+
+.checkIcon {
+    color: var(--accent);
+    stroke-dasharray: 24;
+    stroke-dashoffset: 24;
+    animation: drawCheck 0.5s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+}
+
+@keyframes drawCheck {
+    to { stroke-dashoffset: 0; }
+}
+
+.successRule {
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+    margin: 1.5rem auto 1.75rem;
+}
+
+.successTitle {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    color: var(--black);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+}
+
+.successBody {
+    font-size: 1rem;
+    color: var(--text-light);
+    line-height: 1.75;
+    max-width: 38ch;
+    margin: 0 auto 2.5rem;
+}
+
+.successName {
+    color: var(--black);
+    font-weight: 500;
+}
+
+.successMeta {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--stone);
+    padding-top: 2rem;
+    border-top: 1px solid var(--silver, #E0DDD6);
+    width: 100%;
+    max-width: 32ch;
+    margin: 0 auto;
+}
+
+/* ─── Hover — pointer devices only ─────────────────────── */
+@media (hover: hover) {
+    .infoItem:hover {
+        border-color: var(--black);
+    }
+
+    .infoLink:hover {
+        color: var(--black);
+    }
+
+    .submitBtn:not(:disabled):hover {
+        background: var(--charcoal, #2C3840);
+        letter-spacing: 3px;
+    }
+}
+
+/* ─── Reduced motion ────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .scrollLine {
+        animation: none;
+        opacity: 0.35;
+    }
+
+    .spinner {
+        animation: none;
+        opacity: 0.6;
+    }
+
+    .input,
+    .select,
+    .textarea,
+    .submitBtn,
+    .infoItem,
+    .infoLink {
+        transition: none;
+    }
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 1100px) {
+    .contactGrid {
+        grid-template-columns: 1fr 1.4fr;
+        gap: 4rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .contactGrid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+
+    .infoCol {
+        position: static;
+    }
+
+    .formCol {
+        padding: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 8rem 0 5rem;
+        min-height: 55vh;
+    }
+
+    .scrollIndicator {
+        display: none;
+    }
+
+    .row {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .formCol {
+        padding: 2rem 1.5rem;
+    }
+
+    .infoDesc {
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .formCol {
+        padding: 1.5rem 1.25rem;
+    }
+}

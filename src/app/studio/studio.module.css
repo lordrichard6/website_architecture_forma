@@ -1,11 +1,61 @@
+/* Hero carries the fixed-header offset — no magic number on .main */
 .main {
-    padding-top: 80px;
+    padding-top: 0;
 }
 
+/* ─── Hero — dark ────────────────────────────────────────── */
 .hero {
     background: var(--black);
-    padding: 6rem 0;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    padding: 10rem 0 7rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── Video background ── */
+.heroVideo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+}
+
+/* ── Dark overlay — brand slate rgba, not pure black (directive §1B) ── */
+.heroOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 34, 40, 0.65);
+    z-index: 2;
+}
+
+/* Ghosted watermark — sits above overlay */
+.heroGhost {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: clamp(8rem, 20vw, 18rem);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: rgba(255, 255, 255, 0.04);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    z-index: 3;
+}
+
+/* Content sits above all layers */
+.heroContent {
+    position: relative;
+    z-index: 4;
 }
 
 .label {
@@ -19,129 +69,616 @@
 
 .hero h1 {
     color: var(--white);
-    margin-bottom: 1rem;
-}
-
-.hero p {
-    color: var(--stone);
-    font-size: 1.2rem;
-}
-
-.philosophy {
-    background: var(--white);
-}
-
-.philosophyContent {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.philosophyContent h2 {
-    margin-bottom: 2rem;
-}
-
-.philosophyContent p {
-    color: var(--text-light);
-    font-size: 1.15rem;
-    line-height: 1.9;
     margin-bottom: 1.5rem;
 }
 
-.teamSection {
-    background: var(--surface);
+.heroSub {
+    color: var(--stone);
+    font-size: 1.2rem;
+    line-height: 1.75;
+    max-width: 55ch;
+    margin: 0 auto 2.5rem;
 }
 
-.teamSection h2 {
+/* ─── Hero anchor CTA ────────────────────────────────────── */
+.heroCta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 0.3s ease, gap 0.3s ease;
+}
+
+.heroCta:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+@media (hover: hover) {
+    .heroCta:hover {
+        color: var(--accent);
+        gap: 0.9rem;
+    }
+}
+
+/* ─── Scroll indicator ───────────────────────────────────── */
+.scrollIndicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 1;
+}
+
+.scrollLine {
+    display: block;
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.35));
+    animation: scrollDrop 1.8s ease-in-out infinite;
+}
+
+.scrollLabel {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+@keyframes scrollDrop {
+    0%, 100% { opacity: 0.4; transform: scaleY(0.6); transform-origin: top; }
+    50%       { opacity: 1;   transform: scaleY(1);   transform-origin: top; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scrollLine {
+        animation: none;
+        opacity: 0.35;
+    }
+}
+
+/* ─── Philosophy — light ─────────────────────────────────── */
+.philosophy {
+    background: var(--background);
+}
+
+/* Asymmetric two-column grid: text left, image right */
+.philosophyGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+}
+
+/* ── Text column ── */
+.philosophyText {
+    max-width: 600px;
+}
+
+.philosophyLabel {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.philosophyText h2 {
+    margin-bottom: 0;
+    color: var(--black);
+    letter-spacing: -0.02em;
+}
+
+/* Sage accent rule under heading */
+.philosophyRule {
+    display: block;
+    width: 48px;
+    height: 3px;
+    background: var(--accent);
+    margin: 1.5rem 0 2rem;
+    border-radius: 2px;
+}
+
+.philosophyText p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    line-height: 1.9;
+    max-width: 65ch;
+    margin-bottom: 1.5rem;
+}
+
+/* Principle tags */
+.principleList {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.principleTag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--concrete);
+    background: var(--surface);
+    border: 1px solid var(--silver);
+    padding: 0.55rem 1rem;
+    width: fit-content;
+}
+
+.principleIcon {
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+/* ── Image column ── */
+.philosophyImageWrap {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+}
+
+.philosophyImage {
+    object-fit: cover;
+    animation: kenBurnsPhilosophy 18s ease-in-out infinite alternate;
+    transform-origin: center center;
+}
+
+@keyframes kenBurnsPhilosophy {
+    0%   { transform: scale(1)    translate(0,    0);   }
+    100% { transform: scale(1.08) translate(-1.5%, 1%); }
+}
+
+/* Sage bar — top edge */
+.philosophyImageBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--accent);
+    z-index: 1;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .philosophyGrid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .philosophyImageWrap {
+        aspect-ratio: 16 / 9;
+        order: -1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .philosophyImage {
+        animation: none;
+        transform: none;
+    }
+}
+
+/* ─── Team — dark ────────────────────────────────────────── */
+.teamSection {
+    background: var(--black);
+    position: relative;
+    /* #4 — offset for fixed header so #team anchor isn't clipped */
+    scroll-margin-top: 5rem;
+}
+
+.teamSection > .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Section header — #6 left-aligned ── */
+.teamHeader {
+    text-align: left;
     margin-bottom: 4rem;
 }
 
+.teamEyebrow {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.teamHeading {
+    color: var(--white);
+    margin-bottom: 0;
+    /* #5 — tight tracking on display headings */
+    letter-spacing: -0.02em;
+}
+
+/* ── Grid ── */
 .teamGrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
 }
 
+/* ── Card ── */
 .teamCard {
-    text-align: center;
+    /* #8 — left-aligned, not centred */
+    text-align: left;
+    cursor: default;
 }
 
+/* ── Image ── */
 .teamImage {
     position: relative;
-    aspect-ratio: 1;
+    aspect-ratio: 3 / 4;
     overflow: hidden;
-    margin-bottom: 1.5rem;
-    filter: grayscale(100%);
-    transition: filter 0.3s ease;
+    margin-bottom: 1.25rem;
 }
 
-.teamCard:hover .teamImage {
-    filter: grayscale(0%);
+/* #4 — sage left accent bar, consistent with About + Philosophy image treatment */
+.teamImage::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--accent);
+    z-index: 1;
 }
 
+/* #1 — filter on <img>, not wrapper
+   #1 — image zoom paired with card lift (#2C) */
 .teamImage img {
     object-fit: cover;
+    filter: grayscale(100%);
+    transform: scale(1);
+    transform-origin: center center;
+    transition: filter 0.5s ease, transform 0.6s ease;
 }
 
-.teamCard h3 {
+@media (hover: hover) {
+    .teamCard:hover .teamImage img {
+        filter: grayscale(0%);
+        /* #1 — zoom paired with the card's whileHover y:-6 lift */
+        transform: scale(1.05);
+    }
+}
+
+/* ── Info block ── */
+.teamInfo {
+    padding: 0 0.25rem;
+}
+
+.teamInfo h3 {
     font-family: var(--font-body);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 500;
     text-transform: none;
     letter-spacing: normal;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+    /* #9 — accent underline grows in on hover */
+    position: relative;
+    display: inline-block;
+}
+
+.teamInfo h3::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 1px;
+    transition: width 0.3s ease;
+}
+
+@media (hover: hover) {
+    .teamCard:hover .teamInfo h3::after {
+        width: 100%;
+    }
+}
+
+.teamRole {
+    display: block;
+    color: var(--stone);
+    font-size: 0.875rem;
     margin-bottom: 0.25rem;
 }
 
-.teamCard span {
-    color: var(--text-light);
-    font-size: 0.9rem;
+/* #3 — origin as a bordered badge, not plain metadata */
+.teamOrigin {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--stone);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.22rem 0.55rem;
+    margin-top: 0.5rem;
 }
 
+/* ── #2 Responsive grid ── */
+@media (max-width: 900px) {
+    .teamGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .teamGrid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .teamImage {
+        aspect-ratio: 3 / 4;
+        max-width: 320px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .teamImage img {
+        transition: none;
+        transform: none;
+    }
+    .teamInfo h3::after {
+        transition: none;
+    }
+}
+
+/* ─── Awards — light ─────────────────────────────────────── */
 .awardsSection {
-    background: var(--black);
+    background: var(--surface);
+    /* #2 — sage accent marks the Team→Awards section boundary */
+    border-top: 3px solid var(--accent);
 }
 
-.awardsSection h2 {
-    color: var(--white);
-    margin-bottom: 4rem;
-}
-
-.awardsList {
+.awardsInner {
     max-width: 700px;
     margin: 0 auto;
 }
 
-.awardItem {
-    display: flex;
-    gap: 2rem;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.awardYear {
-    font-family: var(--font-display);
-    font-size: 2rem;
+/* ── #3 Eyebrow ── */
+.awardsEyebrow {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
     color: var(--accent);
-    min-width: 80px;
+    margin-bottom: 1rem;
 }
 
+/* ── Heading ── */
+.awardsHeading {
+    margin-bottom: 2rem;
+    letter-spacing: -0.02em;
+}
+
+/* ── Stat row — two stats side by side ── */
+.awardsStats {
+    margin-bottom: 3rem;
+}
+
+/* #1 — horizontal stat row */
+.statRow {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.statBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+/* vertical rule between the two stats */
+.statDivider {
+    width: 1px;
+    height: 3.5rem;
+    background: var(--silver);
+    flex-shrink: 0;
+}
+
+.statNumber {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 7vw, 5rem);
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+.statLabel {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--stone);
+}
+
+/* ── #4 Semantic list ── */
+.awardsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Row — outer li: CSS hover owner + entrance anchor ── */
+.awardItem {
+    position: relative;
+    /* left padding reserves space for ::before sage bar */
+    padding: 1.5rem 0 1.5rem 1rem;
+    border-bottom: 1px solid var(--silver);
+    /* #4 — tightened to 0.18s to sync with spring settlement (~0.2s) */
+    transition: background 0.18s ease;
+    overflow: hidden;
+}
+
+/* ── #2 Inner row wrapper: spring nudge + correct alignment ── */
+.awardRow {
+    display: flex;
+    /* #2 — flex-start so year aligns with first line of multi-line titles */
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.awardItem:first-child {
+    border-top: 1px solid var(--silver);
+}
+
+/* Sage left bar — GPU scaleY, #4 tightened to 0.18s */
+.awardItem::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: top center;
+    transition: transform 0.18s ease;
+}
+
+@media (hover: hover) {
+    .awardItem:hover {
+        background: var(--background);
+    }
+
+    .awardItem:hover::before {
+        transform: scaleY(1);
+    }
+}
+
+/* Year column — metadata + #5 right-side divider */
+.awardYear {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--stone);
+    min-width: 52px;
+    flex-shrink: 0;
+    padding-top: 0.2rem;
+    /* #5 — columnar separator: year | title */
+    padding-right: 1.5rem;
+    border-right: 1px solid var(--silver);
+}
+
+/* ── Info column ── */
 .awardInfo {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.4rem;
 }
 
-.awardInfo strong {
-    color: var(--white);
-    font-size: 1.1rem;
+/* #4 — title is now dominant */
+.awardTitle {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--black);
+    letter-spacing: -0.01em;
+    line-height: 1.3;
 }
 
-.awardInfo span {
+/* ── Meta row: project + category ── */
+.awardMeta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.awardProject {
+    color: var(--concrete);
+    font-size: 0.875rem;
+}
+
+/* #6 — category badge */
+.awardCategory {
+    display: inline-block;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
     color: var(--stone);
-    font-size: 0.9rem;
+    border: 1px solid var(--silver);
+    padding: 0.2rem 0.55rem;
 }
 
+/* ─── Reduced motion (merged) ───────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .awardItem,
+    .awardItem::before,
+    .heroCta {
+        transition: none;
+    }
+
+    /* Pause video — user prefers no motion */
+    .heroVideo {
+        animation-play-state: paused;
+    }
+}
+
+/* ─── Awards responsive ─────────────────────────────────── */
+@media (max-width: 480px) {
+    .statRow {
+        gap: 1.5rem;
+    }
+
+    .awardRow {
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .awardYear {
+        min-width: unset;
+        padding-top: 0;
+        /* #5 — remove side divider when stacked */
+        padding-right: 0;
+        border-right: none;
+    }
+}
+
+/* ─── Responsive ────────────────────────────────────────── */
 @media (max-width: 768px) {
+    .hero {
+        padding: 9rem 0 6rem;
+        min-height: 60vh;
+    }
+
+    .scrollIndicator {
+        display: none;
+    }
+
     .teamGrid {
         grid-template-columns: repeat(2, 1fr);
     }

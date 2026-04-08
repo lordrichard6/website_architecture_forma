@@ -1,8 +1,9 @@
 .testimonials {
-    background: var(--white);
+    background: var(--surface);
     overflow: hidden;
 }
 
+/* ─── Header ────────────────────────────────────────────── */
 .header {
     text-align: center;
     margin-bottom: 4rem;
@@ -17,45 +18,44 @@
     margin-bottom: 1rem;
 }
 
-.content {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    position: relative;
+/* ─── Two-column layout ─────────────────────────────────── */
+.twoCol {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 5rem;
+    align-items: start;
 }
 
-.quoteIcon {
-    color: var(--accent);
-    opacity: 0.3;
-    margin-bottom: 2rem;
-}
-
-.quoteWrapper {
-    min-height: 280px;
+/* ─── Left column ───────────────────────────────────────── */
+.leftCol {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 2.5rem;
+    padding-top: 0.5rem;
 }
 
-.quote {
-    font-size: 1.5rem;
-    line-height: 1.8;
-    color: var(--text-main);
-    font-style: italic;
-    margin-bottom: 2rem;
-    position: relative;
+/* ─── Decorative opening quote mark ─────────────────────── */
+.quoteIcon {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 10rem;
+    line-height: 0.7;
+    color: var(--accent);
+    opacity: 0.25;
+    user-select: none;
 }
 
+/* ─── Author ────────────────────────────────────────────── */
 .author {
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.3rem;
 }
 
 .author strong {
     font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 2px;
+    color: var(--black);
 }
 
 .author span {
@@ -63,20 +63,46 @@
     font-size: 0.9rem;
 }
 
-.project {
-    color: var(--accent) !important;
-    font-size: 0.85rem !important;
-    margin-top: 0.5rem;
+.author .authorProject {
+    color: var(--accent);
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
 }
 
+/* ─── Right column ──────────────────────────────────────── */
+.rightCol {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-left: 1px solid var(--silver);
+    padding-left: 5rem;
+}
+
+/* ─── Quote wrapper — fixed height prevents layout shift ── */
+.quoteWrapper {
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* ─── Quote text ────────────────────────────────────────── */
+.quote {
+    font-size: 1.45rem;
+    line-height: 1.8;
+    color: var(--text-main);
+    font-style: italic;
+    margin: 0; /* reset browser blockquote default (1em 40px) */
+}
+
+/* ─── Controls ──────────────────────────────────────────── */
 .controls {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 2rem;
-    margin-top: 3rem;
 }
 
+/* ─── Arrow buttons ─────────────────────────────────────── */
 .arrow {
     width: 50px;
     height: 50px;
@@ -86,57 +112,147 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
     color: var(--black);
+    flex-shrink: 0;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-.arrow:hover {
-    background: var(--black);
-    color: var(--white);
-    border-color: var(--black);
+.arrow:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
 }
 
+@media (hover: hover) {
+    .arrow:hover {
+        background: var(--accent);
+        color: var(--white);
+        border-color: var(--accent);
+    }
+}
+
+/* ─── Dot indicators ────────────────────────────────────── */
 .dots {
     display: flex;
     gap: 0.75rem;
 }
 
 .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+    width: 10px;
+    height: 10px;
     background: var(--silver);
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.dot:hover {
-    background: var(--concrete);
+.dot:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
 }
 
-.dot.active {
-    background: var(--black);
-    transform: scale(1.2);
+@media (hover: hover) {
+    .dot:hover {
+        background: var(--concrete);
+    }
 }
 
-@media (max-width: 768px) {
-    .quote {
-        font-size: 1.15rem;
-        line-height: 1.7;
+.dotActive {
+    background: var(--accent);
+    transform: scale(1.3);
+}
+
+/* ─── CTA ───────────────────────────────────────────────── */
+.cta {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.ctaBtn {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2.5rem;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--accent);
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.ctaBtn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+@media (hover: hover) {
+    .ctaBtn:hover {
+        background: var(--accent);
+        color: var(--white);
+    }
+}
+
+/* ─── Reduced motion ────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .arrow,
+    .dot,
+    .ctaBtn {
+        transition: none;
+    }
+}
+
+/* ─── Responsive: tablet ────────────────────────────────── */
+@media (max-width: 900px) {
+    .twoCol {
+        grid-template-columns: 1fr;
+        gap: 3rem;
     }
 
-    .quoteWrapper {
-        min-height: 320px;
+    .leftCol {
+        flex-direction: row;
+        align-items: flex-end;
+        gap: 2rem;
+        padding-top: 0;
     }
 
     .quoteIcon {
-        margin-bottom: 1.5rem;
+        font-size: 7rem;
+        line-height: 1;
     }
 
-    .quoteIcon svg {
-        width: 36px;
-        height: 36px;
+    .quoteWrapper {
+        min-height: 220px;
+    }
+
+    /* Remove left border when stacked — no longer a side column */
+    .rightCol {
+        border-left: none;
+        padding-left: 0;
+    }
+}
+
+/* ─── Responsive: mobile ────────────────────────────────── */
+@media (max-width: 600px) {
+    .leftCol {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .quoteIcon {
+        font-size: 6rem;
+    }
+
+    .quote {
+        font-size: 1.1rem;
+        line-height: 1.75;
+    }
+
+    .quoteWrapper {
+        min-height: 200px;
     }
 
     .controls {
@@ -147,23 +263,11 @@
         width: 44px;
         height: 44px;
     }
-
-    .header h2 {
-        font-size: 2.5rem;
-    }
 }
 
-@media (max-width: 500px) {
-    .quoteWrapper {
-        min-height: auto;
-        padding: 0 0.5rem;
-    }
-
-    .quote {
-        font-size: 1rem;
-    }
-
-    .author strong {
-        font-size: 0.9rem;
+/* ─── Hide decorative quote icon on small phones ────────── */
+@media (max-width: 480px) {
+    .quoteIcon {
+        display: none;
     }
 }

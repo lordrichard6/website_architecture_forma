@@ -1,64 +1,205 @@
+/* ─── Section — dark inversion ──────────────────────────── */
 .about {
-    background: var(--white);
+    background: var(--black);
+    position: relative;
 }
 
+.about > .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ─── Two-column wrapper ────────────────────────────────── */
 .wrapper {
     display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 6rem;
+    grid-template-columns: 1fr 0.9fr;
+    gap: 7rem;
+    align-items: start;
 }
 
-.left h2 {
+/* ─── Left column ───────────────────────────────────────── */
+.left {
+    /* no sticky here — only the head is sticky */
+}
+
+/* ─── Sticky head: only eyebrow + H2 travel on scroll ───── */
+.stickyHead {
     position: sticky;
-    top: 150px;
-}
-
-.lead {
-    font-size: 1.5rem;
-    line-height: 1.6;
+    top: 8rem;
     margin-bottom: 2rem;
 }
 
+/* ─── Eyebrow label ─────────────────────────────────────── */
+.eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+}
+
+/* ─── Heading ───────────────────────────────────────────── */
+.left h2 {
+    color: var(--white);
+}
+
+/* ─── Lead paragraph ────────────────────────────────────── */
+.lead {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--off-white);
+    margin-bottom: 1.5rem;
+    max-width: 65ch;
+}
+
+/* ─── Body paragraph ────────────────────────────────────── */
 .body {
-    color: var(--text-light);
-    margin-bottom: 3rem;
-    font-size: 1.05rem;
+    color: var(--stone);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    max-width: 65ch;
 }
 
-.stats {
-    display: flex;
-    gap: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.stat {
+/* ─── Value propositions ────────────────────────────────── */
+.values {
+    list-style: none;
     display: flex;
     flex-direction: column;
+    gap: 0;
+    margin-bottom: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.num {
-    font-family: var(--font-display);
-    font-size: 4rem;
-    line-height: 1;
-    letter-spacing: 2px;
+.valueItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.label {
-    font-size: 0.85rem;
+.valueItem strong {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: var(--text-light);
-    margin-top: 0.5rem;
+    color: var(--accent);
 }
 
+.valueItem span {
+    font-size: 0.95rem;
+    color: var(--stone);
+    line-height: 1.6;
+}
+
+/* ─── CTA ───────────────────────────────────────────────── */
+.cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--white);
+    text-decoration: none;
+    transition: gap 0.3s ease, color 0.3s ease;
+}
+
+.cta:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+@media (hover: hover) {
+    .cta:hover {
+        gap: 1rem;
+        color: var(--accent);
+    }
+}
+
+/* ─── Right column: image ───────────────────────────────── */
+.imageWrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+}
+
+/* Sage accent bar — left edge of image */
+.imageWrap::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    z-index: 2;
+}
+
+.image {
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+@media (hover: hover) {
+    .imageWrap:hover .image {
+        transform: scale(1.04);
+    }
+}
+
+/* ─── Image caption overlay ─────────────────────────────── */
+.imageCaption {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 1.75rem; /* offset past the accent bar */
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.65);
+    z-index: 2;
+    user-select: none;
+}
+
+/* ─── Reduced motion ────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .cta,
+    .image {
+        transition: none;
+    }
+}
+
+/* ─── Responsive: tablet ────────────────────────────────── */
 @media (max-width: 900px) {
     .wrapper {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 3rem;
     }
 
-    .left h2 {
+    /* Image first on mobile — visual hook before text */
+    .imageWrap {
+        order: -1;
+        aspect-ratio: 4 / 3;
+    }
+
+    .stickyHead {
         position: static;
+    }
+}
+
+/* ─── Responsive: mobile ────────────────────────────────── */
+@media (max-width: 600px) {
+    .lead {
+        font-size: 1.1rem;
+    }
+
+    .imageWrap {
+        aspect-ratio: 3 / 2;
     }
 }

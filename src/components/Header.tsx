@@ -12,7 +12,7 @@ export default function Header() {
     const pathname = usePathname();
 
     // Pages that have a dark hero — header starts transparent with white text
-    const hasDarkHero = pathname === '/' || pathname.startsWith('/projects/');
+    const hasDarkHero = pathname === '/' || pathname === '/studio' || pathname.startsWith('/projects/');
     const isTransparent = hasDarkHero && !scrolled;
 
     useEffect(() => {
@@ -40,9 +40,9 @@ export default function Header() {
         return () => { document.body.style.overflow = ''; };
     }, [isOpen]);
 
-    // Determine active link
+    // Hash links don't get active styling — pathname alone can't track scroll position
     const isActive = (href: string) => {
-        if (href.startsWith('/#')) return pathname === '/';
+        if (href.startsWith('/#')) return false;
         return pathname === href || pathname.startsWith(href + '/');
     };
 
@@ -66,15 +66,15 @@ export default function Header() {
                 </Link>
 
                 {/* Desktop nav */}
-                <nav className={styles.nav}>
+                <nav className={styles.nav} aria-label="Main navigation">
                     <Link href="/#projects" className={`${styles.link} ${isActive('/#projects') ? styles.active : ''}`}>Projects</Link>
                     <Link href="/studio"    className={`${styles.link} ${isActive('/studio')    ? styles.active : ''}`}>Studio</Link>
                     <Link href="/services"  className={`${styles.link} ${isActive('/services')  ? styles.active : ''}`}>Services</Link>
-                    <Link href="/#contact"  className={`${styles.link} ${isActive('/#contact')  ? styles.active : ''}`}>Contact</Link>
+                    <Link href="/contact"   className={`${styles.link} ${isActive('/contact')   ? styles.active : ''}`}>Contact</Link>
                 </nav>
 
                 {/* Desktop CTA */}
-                <Link href="/#contact" className={styles.cta}>
+                <Link href="/contact" className={styles.cta}>
                     Start a Project
                 </Link>
 
@@ -84,19 +84,28 @@ export default function Header() {
                     onClick={() => setIsOpen((v) => !v)}
                     aria-label={isOpen ? 'Close menu' : 'Open menu'}
                     aria-expanded={isOpen}
+                    aria-controls="mobile-menu"
                 >
                     {isOpen ? <X size={28} /> : <Menu size={28} />}
                 </button>
             </div>
 
-            {/* Mobile overlay */}
-            <div className={`${styles.mobileMenu} ${isOpen ? styles.open : ''}`} aria-hidden={!isOpen}>
-                <nav className={styles.mobileNav}>
+            {/* Mobile overlay — inert when closed blocks keyboard focus entirely */}
+            <div
+                id="mobile-menu"
+                className={`${styles.mobileMenu} ${isOpen ? styles.open : ''}`}
+                aria-hidden={!isOpen}
+                role="dialog"
+                aria-modal="true"
+                aria-label="Navigation menu"
+                inert={!isOpen}
+            >
+                <nav className={styles.mobileNav} aria-label="Mobile navigation">
                     <Link href="/#projects" className={styles.mobileLink} onClick={close}>Projects</Link>
                     <Link href="/studio"    className={styles.mobileLink} onClick={close}>Studio</Link>
                     <Link href="/services"  className={styles.mobileLink} onClick={close}>Services</Link>
-                    <Link href="/#contact"  className={styles.mobileLink} onClick={close}>Contact</Link>
-                    <Link href="/#contact"  className={styles.mobileCta}  onClick={close}>Start a Project</Link>
+                    <Link href="/contact"   className={styles.mobileLink} onClick={close}>Contact</Link>
+                    <Link href="/contact"   className={styles.mobileCta}  onClick={close}>Start a Project</Link>
                 </nav>
             </div>
         </header>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Inter } from "next/font/google";
 import Cursor from "@/components/Cursor";
+import Logo3DLoader from "@/components/Logo3DLoader";
 import "./globals.css";
 
 const bebas = Bebas_Neue({
@@ -102,6 +103,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Cursor />
+        <Logo3DLoader />
         {children}
       </body>
     </html>
